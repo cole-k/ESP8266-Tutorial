@@ -62,7 +62,7 @@ end
 
 -- setup wifi
 wifi.setmode(wifi.STATION)
-wifi.sta.config("Claremont-ETC","abcdeabcde")
+wifi.sta.config("WIFINAME", "WIFIPASSWORD")
 tmr.alarm(1,1000, 1, function()
     if(wifi.sta.getip()~=nil) then
         print("IP Address: "..wifi.sta.getip())
