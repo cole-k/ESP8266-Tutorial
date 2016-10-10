@@ -11,3 +11,6 @@ Interactive code snippets designed to highlight the ESP8266's capabilities
 ### To Do
 1. Create code snippets for controlling the OLED display and hosting the web server.
 2. Create slides explaining the relevant syntax and concepts.
+3. Test all ESPs and OLED displays to make sure they work and connect
+4. Bundle necessary drivers, code snippets, and ESPlorer in a download file.
+5. Test this on someone (CS Prof? Other student?)
