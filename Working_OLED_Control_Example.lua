@@ -35,20 +35,20 @@ function runServer()
                 text = text:sub(6) --remove "text="(what's at the beginning of input)
                 s_index, e_index = text:find(string.char(7).."..")
                 while (s_index ~= nil) do
-                    hex_val = text:sub(s_index+1, e_index) --to get rid of "%"
-                    ascii_val = string.char(tonumber(hex_val,16))
-                    text = text:sub(1, s_index-1) .. ascii_val .. text:sub(e_index + 1)
-                    s_index, e_index = text:find(string.char(7).."..")
+                    hex_val = text:sub(s_index+1, e_index) --Get the two values after the % sign
+                    ascii_val = string.char(tonumber(hex_val,16)) --convert these values to hex and then interpret them as ascii
+                    text = text:sub(1, s_index-1) .. ascii_val .. text:sub(e_index + 1) --insert the ascii value and resize the string
+                    s_index, e_index = text:find(string.char(7).."..") --find the next bell character (what we replaced % with)
                 end
                 print("OUTPUT:")
-                print(text)
-                if(string.find(text,"\n") ~= nil) then --if there are multiple lines, send them all in a table
+                print(text) --print the text
+                if(string.find(text,"\n") ~= nil) then --if there are multiple lines, send each line as a cell in a table
                     splitText = {}
-                    for line in string.gmatch(text, "[^\n]+") do --split by %, used to delimit newlines
-                        table.insert(splitText, line)
+                    for line in string.gmatch(text, "[^\n]+") do --split by newlines
+                        splitText:insert(line) --append to the table
                     end
                     text = splitText
-                else --if there's only one line, send it in a table
+                else --if there's only one line, send it as a single cell in a table
                     text = {text}
                 end
                 display(text)
@@ -58,16 +58,16 @@ function runServer()
             client:send("<p> Characters that are not alphanumerics, spaces, and linebreaks are not officially supported. They may and often times will behave unpredictably </p>")
             client:send("<form action=\"\" method=\"post\"> <textarea name=\"text\" rows=\"6\" cols=\"50\">"..text.."</textarea> <br> <input type=\"submit\" value=\"Submit\"></form>")
         end)
-        conn:on("sent", function(conn)
-            conn:close()
-            collectgarbage()
+        conn:on("sent", function(conn) --when you send information to the client
+            conn:close() --close the connection
+            collectgarbage() --collect garbage
         end)
     end)
 end
 
 -- setup wifi
 wifi.setmode(wifi.STATION)
-wifi.sta.config("Claremont-ETC", "abcdeabcde")
+wifi.sta.config("WIFINAME", "WIFIPASSWORD") --replace with your network name and password
 tmr.alarm(1,2000, 1, function()
     if(wifi.sta.getip()~=nil) then
         print("IP Address: "..wifi.sta.getip())
