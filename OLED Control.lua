@@ -23,7 +23,7 @@ function writeText(text)
    disp:drawStr(0, 10, "Hello!")
    --[[Change this function so that it
         1. Writes the text it is given to the display
-        2. Moves to a new line between each cell ]]
+        2. Moves to a new line between each entry in the table ]]
 end
 
 --[[display(text)
