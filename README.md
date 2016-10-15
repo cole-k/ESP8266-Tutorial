@@ -1,6 +1,8 @@
 # ESP8266-Tutorial
 Interactive code snippets designed to highlight the ESP8266's capabilities
 
+[Slides](https://docs.google.com/a/g.hmc.edu/presentation/d/1hklxqxTjTlcK6zbn6wWgUUC_U2BwH9-dWDtHl9vmpwc/edit?usp=sharing)
+
 ### How it works
 1. You connect the ESP8266 to the OLED display.
 2. You edit a code snippet in Lua provided for controlling an OLED display so that it can take text input and display it on the OLED.
