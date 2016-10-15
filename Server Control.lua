@@ -24,7 +24,7 @@ function fixText(text)
         hex_val = tonumber(text:sub(s_index+1, e_index),16)
         
         --Convert the two values combined to hex and then interpret them as ascii
-        ascii_val = string.char()
+        ascii_val = string.char(hex_val)
         
         --Insert the ascii value and resize the string
         text = text:sub(1, s_index-1) .. ascii_val .. text:sub(e_index + 1)
